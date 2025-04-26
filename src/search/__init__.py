@@ -25,6 +25,7 @@ from src.search.result_formatter import (
     GroupingOptions,
     SummarizationOptions,
 )
+from src.search.unified import UnifiedSearch, UnifiedSearchRequest, UnifiedSearchResponse
 
 __all__ = [
     "SearchEngine",
@@ -49,4 +50,7 @@ __all__ = [
     "SearchOptimizer",
     "OptimizerConfig",
     "RelevanceConfig",
+    "UnifiedSearch",
+    "UnifiedSearchRequest",
+    "UnifiedSearchResponse",
 ]
