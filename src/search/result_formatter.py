@@ -1,5 +1,5 @@
 """
-Result formatter for search results.
+Advanced result formatter for search results.
 
 This module provides advanced formatting functionality for search results,
 including highlighting, summarization, and grouping.
