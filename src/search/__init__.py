@@ -25,6 +25,12 @@ from src.search.query import (
     SortField,
     FilterOperator,
 )
+from src.search.response_optimization import (
+    OptimizationConfig,
+    PerformanceMetrics,
+    ProgressiveLoadingState,
+    ResponseOptimizer,
+)
 from src.search.result_formatter import (
     ResultFormatter,
     FormattingOptions,
@@ -69,4 +75,8 @@ __all__ = [
     "ConditionNode",
     "LogicalOperator",
     "FilterBuilder",
+    "ResponseOptimizer",
+    "OptimizationConfig",
+    "PerformanceMetrics",
+    "ProgressiveLoadingState",
 ]
