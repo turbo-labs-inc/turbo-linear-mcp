@@ -7,10 +7,14 @@ initializing and starting the server with the configured settings.
 """
 
 import argparse
-import logging
+import os
 import sys
+from pathlib import Path
 
-# Local imports will be added as modules are implemented
+from src.config.config import load_config
+from src.server.server import create_server
+from src.utils.environment import load_env_file
+from src.utils.logging import configure_logging, get_logger
 
 
 def parse_arguments():
@@ -27,32 +31,49 @@ def parse_arguments():
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
         default="INFO"
     )
-    return parser.parse_args()
-
-
-def setup_logging(log_level):
-    """Configure logging for the application."""
-    numeric_level = getattr(logging, log_level.upper(), None)
-    if not isinstance(numeric_level, int):
-        raise ValueError(f"Invalid log level: {log_level}")
-    
-    logging.basicConfig(
-        level=numeric_level,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        handlers=[logging.StreamHandler(sys.stdout)]
+    parser.add_argument(
+        "--env-file", "-e",
+        help="Path to .env file",
+        default=None
     )
+    return parser.parse_args()
 
 
 def main():
     """Application entry point."""
+    # Parse command line arguments
     args = parse_arguments()
-    setup_logging(args.log_level)
     
-    logger = logging.getLogger(__name__)
+    # Load environment variables from .env file if specified
+    if args.env_file:
+        load_env_file(args.env_file)
+    else:
+        load_env_file()
+    
+    # Configure logging
+    configure_logging(log_level=args.log_level)
+    logger = get_logger(__name__)
+    
     logger.info("Starting Linear MCP Server")
     
-    # Server setup and startup will be implemented in future tasks
-    logger.info("Server implementation pending")
+    try:
+        # Load configuration
+        config_path = Path(args.config)
+        if not config_path.exists():
+            logger.error(f"Configuration file not found: {config_path}")
+            sys.exit(1)
+        
+        config = load_config(config_path)
+        logger.info(f"Configuration loaded from {config_path}")
+        
+        # Create and run server
+        server = create_server(config)
+        logger.info(f"Server created, listening on {config.server.host}:{config.server.port}")
+        server.run()
+        
+    except Exception as e:
+        logger.exception(f"Error starting server: {e}")
+        sys.exit(1)
     
     logger.info("Linear MCP Server stopped")
 
