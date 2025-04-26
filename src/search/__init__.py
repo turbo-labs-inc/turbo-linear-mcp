@@ -8,6 +8,7 @@ including query building, search execution, and result formatting.
 from src.search.cache import CacheOptions, SearchCache
 from src.search.engine import SearchEngine, SearchResult, SearchResponse, SearchOptions
 from src.search.formatter import SearchResultFormatter
+from src.search.optimizer import SearchOptimizer, OptimizerConfig, RelevanceConfig
 from src.search.query import (
     QueryBuilder,
     ResourceType,
@@ -45,4 +46,7 @@ __all__ = [
     "SummarizationOptions",
     "CacheOptions",
     "SearchCache",
+    "SearchOptimizer",
+    "OptimizerConfig",
+    "RelevanceConfig",
 ]
