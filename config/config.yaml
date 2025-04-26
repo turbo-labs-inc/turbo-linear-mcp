@@ -1,0 +1,29 @@
+# Linear MCP Server Configuration
+
+# Linear API configuration
+linear:
+  # Replace with your Linear API key
+  api_key: "your_linear_api_key_here"
+  api_url: "https://api.linear.app/graphql"
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1
+
+# Server configuration
+server:
+  host: "127.0.0.1"
+  port: 8000
+  workers: 4
+  reload: false
+  cors_origins:
+    - "*"
+  request_timeout: 60
+
+# Logging configuration
+logging:
+  level: "INFO"
+  log_file: "logs/linear-mcp.log"
+
+# General configuration
+debug: false
+environment: "development"
