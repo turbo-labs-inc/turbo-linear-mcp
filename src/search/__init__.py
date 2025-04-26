@@ -7,6 +7,13 @@ including query building, search execution, and result formatting.
 
 from src.search.cache import CacheOptions, SearchCache
 from src.search.engine import SearchEngine, SearchResult, SearchResponse, SearchOptions
+from src.search.filter import (
+    ConditionNode,
+    FilterBuilder,
+    FilterGroup,
+    LogicalNode,
+    LogicalOperator,
+)
 from src.search.formatter import SearchResultFormatter
 from src.search.optimizer import SearchOptimizer, OptimizerConfig, RelevanceConfig
 from src.search.query import (
@@ -57,4 +64,9 @@ __all__ = [
     "QueryValidator",
     "ValidationRule",
     "ResourceTypeRules",
+    "FilterGroup",
+    "LogicalNode",
+    "ConditionNode",
+    "LogicalOperator",
+    "FilterBuilder",
 ]
