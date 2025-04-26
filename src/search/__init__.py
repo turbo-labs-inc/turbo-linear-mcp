@@ -26,6 +26,7 @@ from src.search.result_formatter import (
     SummarizationOptions,
 )
 from src.search.unified import UnifiedSearch, UnifiedSearchRequest, UnifiedSearchResponse
+from src.search.validation import QueryValidator, ValidationRule, ResourceTypeRules
 
 __all__ = [
     "SearchEngine",
@@ -53,4 +54,7 @@ __all__ = [
     "UnifiedSearch",
     "UnifiedSearchRequest",
     "UnifiedSearchResponse",
+    "QueryValidator",
+    "ValidationRule",
+    "ResourceTypeRules",
 ]
