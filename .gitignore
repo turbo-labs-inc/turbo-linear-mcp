@@ -113,3 +113,7 @@ config/secrets.yaml
 logs/
 .DS_Store
 EOF < /dev/null
+
+.env.example
+.env.*
+config/.env.example
