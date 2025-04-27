@@ -117,3 +117,5 @@ EOF < /dev/null
 .env.example
 .env.*
 config/.env.example
+
+node_modules/
